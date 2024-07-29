@@ -1,4 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Global styles */
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+/* Add this to make form fields more visible */
+.mat-form-field {
+  background-color: #f8f9fa; /* Light background */
+  padding: 10px; /* Padding for better visual spacing */
+  border-radius: 0.25rem; /* Rounded corners */
+}
+
+.mat-form-field .mat-form-field-label {
+  color: #495057; /* Dark text for labels */
+}
+
+.mat-input-element,
+.mat-select,
+.mat-radio-button {
+  background-color: #ffffff; /* White background for inputs */
+  color: #495057; /* Dark text color */
+}
+
+.mat-form-field .mat-form-field-underline {
+  background-color: #ced4da; /* Light border for form fields */
+}
+
+.mat-form-field .mat-form-field-outline {
+  border-color: #ced4da; /* Border color for the outline */
+}
+
+.mat-radio-button {
+  color: #495057; /* Dark text color */
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-checkmark {
+  background-color: #007bff; /* Bootstrap primary color */
+  border-color: #007bff; /* Bootstrap primary color */
+}
+
+.mat-select .mat-select-trigger {
+  color: #495057; /* Dark text color */
+}
+
+.mat-select .mat-select-arrow {
+  color: #495057; /* Dark text color */
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

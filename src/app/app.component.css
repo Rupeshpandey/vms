@@ -1,0 +1,41 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    padding: 1px;
+  }
+  
+  .header-left {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-right button {
+    margin-left: auto;
+  }
+  
+  .app-main {
+    flex: 1;
+    padding: 5px;
+  }
+  
+  .app-footer {
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+    padding: 1px;
+  }
+  

@@ -1,1 +1,19 @@
-{{title}}
+<div class="app-container">
+    <header class="app-header">
+      <div class="header-left">
+        <h1>Vendor Management System</h1>
+      </div>
+      <div class="header-right">
+        <button mat-icon-button (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </header>
+    <main class="app-main">
+      <router-outlet></router-outlet>
+    </main>
+    <footer class="app-footer">
+      <p>&copy; 2024 Vendor Management System. All rights reserved.</p>
+    </footer>
+  </div>
+  

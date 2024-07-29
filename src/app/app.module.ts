@@ -10,6 +10,9 @@ import { VendorListComponent } from './components/vendor-list/vendor-list.compon
 import { BasicDetailsComponent } from './components/basic-details/basic-details.component';
 import { CompanyContactsComponent } from './components/company-contacts/company-contacts.component';
 import { BankingInformationComponent } from './components/banking-information/banking-information.component';
+import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { BankingInformationComponent } from './components/banking-information/ba
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

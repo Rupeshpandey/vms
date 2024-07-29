@@ -1,0 +1,51 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    /* Light background for contrast */
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .header {
+    margin-top: 20px;
+    /* Margin at the top of the header */
+  }
+  
+  .login-form {
+    background: #ffffff;
+    /* White background for the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Padding inside the form */
+    margin-top: auto;
+    /* Align to center vertically */
+    margin-bottom: auto;
+    /* Align to center vertically */
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    /* Make the form fields full width */
+  }
+  
+  button {
+    width: 100%;
+    /* Make the button full width */
+  }
+  
+  h1 {
+    font-size: 2em;
+    color: #333;
+    /* Darker color for the title */
+  }
+  
+  h2 {
+    color: #555;
+    /* Darker color for the form title */
+  }
+  
