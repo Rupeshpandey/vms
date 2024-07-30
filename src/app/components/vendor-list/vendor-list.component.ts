@@ -31,31 +31,27 @@ export class VendorListComponent implements OnInit {
   }
 
   editVendor(id: number): void {
-    if (typeof id === 'number') {
-      this.router.navigate(['/vendor-registration'], { state: { vendorId: id } });
-    }
+    this.router.navigate(['/vendor-registration'], { state: { vendorId: id } });
   }
 
   deleteVendor(id: number): void {
-    if (typeof id === 'number') {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'This action cannot be undone!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.vendorService.deleteVendor(id).subscribe(
-            () => {
-              Swal.fire('Deleted!', 'The vendor has been deleted.', 'success');
-              this.loadVendors(); // Refresh the vendor list
-            },
-            error => Swal.fire('Error!', 'There was an error deleting the vendor.', 'error')
-          );
-        }
-      });
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.vendorService.deleteVendor(id).subscribe(
+          () => {
+            Swal.fire('Deleted!', 'The vendor has been deleted.', 'success');
+            this.loadVendors(); // Refresh the vendor list
+          },
+          error => Swal.fire('Error!', 'There was an error deleting the vendor.', 'error')
+        );
+      }
+    });
   }
 }
