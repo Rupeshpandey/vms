@@ -96,16 +96,22 @@ export class BasicDetailsComponent {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.vendor.profileImage = reader.result as string;
+        this.fileValid = true; // Set flag to true when a file is uploaded
       };
       reader.onerror = error => {
         console.log('Error: ', error);
       };
+    } else {
+      this.fileValid = false; // Set flag to false if no file is selected
     }
   }
+  
 
   checkFormValidity() {
-    this.formValid.emit({ valid: this.basicForm.valid ?? false, data: this.vendor });
+    const isValid = this.basicForm.valid && this.fileValid;
+    this.formValid.emit({ valid: isValid?? false, data: this.vendor });
   }
+  
 
   onFormChange() {
     this.checkFormValidity();
@@ -113,10 +119,13 @@ export class BasicDetailsComponent {
 
   continue() {
     this.checkFormValidity();
-    if (this.basicForm.valid) {
+    if (this.fileValid && this.basicForm.valid) {
       this.formValid.emit({ valid: true, data: this.vendor });
+    } else {
+      Swal.fire('Error', 'Please upload a profile image.', 'error');
     }
   }
+  
 
   resetForm() {
     this.vendor = {

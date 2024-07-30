@@ -3,7 +3,7 @@
       <div class="col-md-6">
         <mat-form-field class="w-100">
           <mat-label>Bank Name</mat-label>
-          <input matInput placeholder="Bank Name" name="bankName" [(ngModel)]="bankingInformation.bankName" #bankName="ngModel" required>
+          <input matInput name="bankName" [(ngModel)]="bankingInformation.bankName" #bankName="ngModel" required>
           <mat-error *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)">
             Bank Name is required.
           </mat-error>
@@ -12,7 +12,7 @@
       <div class="col-md-6">
         <mat-form-field class="w-100">
           <mat-label>Account Number</mat-label>
-          <input matInput placeholder="Account Number" name="accountNumber" [(ngModel)]="bankingInformation.accountNumber" #accountNumber="ngModel" required pattern="^[0-9]{9,18}$">
+          <input matInput name="accountNumber" [(ngModel)]="bankingInformation.accountNumber" #accountNumber="ngModel" required pattern="^[0-9]{9,18}$">
           <mat-error *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)">
             <span *ngIf="accountNumber.errors?.['required']">Account Number is required.</span>
             <span *ngIf="accountNumber.errors?.['pattern']">Account Number must be between 9 and 18 digits.</span>
@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <mat-form-field class="w-100">
           <mat-label>IFSC Code</mat-label>
-          <input matInput placeholder="IFSC Code" name="ifscCode" [(ngModel)]="bankingInformation.IFSCCode" #ifscCode="ngModel" required pattern="^[A-Z]{4}[0-9]{7}$">
+          <input matInput name="ifscCode" [(ngModel)]="bankingInformation.IFSCCode" #ifscCode="ngModel" required pattern="^[A-Z]{4}[0-9]{7}$">
           <mat-error *ngIf="ifscCode.invalid && (ifscCode.dirty || ifscCode.touched)">
             <span *ngIf="ifscCode.errors?.['required']">IFSC Code is required.</span>
             <span *ngIf="ifscCode.errors?.['pattern']">IFSC Code must be 11 characters (4 letters and 7 digits).</span>
@@ -35,7 +35,7 @@
       <div class="col-md-6">
         <mat-form-field class="w-100">
           <mat-label>Branch Name</mat-label>
-          <input matInput placeholder="Branch Name" name="branchName" [(ngModel)]="bankingInformation.Branch" #branchName="ngModel" required>
+          <input matInput name="branchName" [(ngModel)]="bankingInformation.Branch" #branchName="ngModel" required>
           <mat-error *ngIf="branchName.invalid && (branchName.dirty || branchName.touched)">
             Branch Name is required.
           </mat-error>

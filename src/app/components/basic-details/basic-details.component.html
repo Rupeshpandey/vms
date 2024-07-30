@@ -128,7 +128,7 @@
     <div class="col-md-6">
       <label class="w-100">Upload Profile Image</label>
       <input type="file" class="form-control" name="file" required (change)="onFileChange($event)">
-      <mat-error *ngIf="!fileValid">
+      <mat-error *ngIf="!fileValid && basicForm.touched">
         <span>Kindly upload a Profile Image.</span>
       </mat-error>
     </div>
