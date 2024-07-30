@@ -1,0 +1,30 @@
+.vendor-registration-container {
+    padding: 1px;
+  }
+  
+  .header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .header h1 {
+    margin: 0 auto;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px; /* Adjust padding as needed */
+  }
+  
+  .heading {
+    flex: 1;
+    text-align: left;
+  }
+  .header button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }

@@ -1,1 +1,123 @@
-<p>basic-details works!</p>
+<form #basicForm="ngForm" class="container mt-3" novalidate>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">First Name</label>
+          <input matInput name="firstName" [(ngModel)]="vendor.firstName" #firstName="ngModel" required>
+          <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            <span *ngIf="firstName.errors?.['required']">Kindly fill First Name.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Middle Name</label>
+          <input matInput name="middleName" [(ngModel)]="vendor.middleName">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Last Name</label>
+          <input matInput name="lastName" [(ngModel)]="vendor.lastName" #lastName="ngModel" required>
+          <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <span *ngIf="lastName.errors?.['required']">Kindly fill Last Name.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Mobile Number</label>
+          <input matInput name="mobileNumber" #mobileNumber="ngModel" [(ngModel)]="vendor.mobile" required pattern="^[0-9]{10}$">
+          <mat-error *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">
+            <span *ngIf="mobileNumber.errors?.['required']">Kindly fill Mobile Number.</span>
+            <span *ngIf="mobileNumber.errors?.['pattern']">Mobile Number should be 10 digits.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Date of Birth</label>
+          <input matInput [matDatepicker]="picker" name="dob" #dob="ngModel" [(ngModel)]="vendor.dob" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+            <span *ngIf="dob.errors?.['required']">Kindly fill Date of Birth.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Pan Card</label>
+          <input matInput name="panCard" #panCard="ngModel" [(ngModel)]="vendor.panCard" required pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}">
+          <mat-error *ngIf="panCard.invalid && (panCard.dirty || panCard.touched)">
+            <span *ngIf="panCard.errors?.['required']">Kindly fill Pan Card.</span>
+            <span *ngIf="panCard.errors?.['pattern']">Invalid PAN Card format.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <mat-label>Language Preference</mat-label>
+        <mat-checkbox name="hindi" [(ngModel)]="vendor.languagePreference.hindi" [ngModelOptions]="{standalone: true}">Hindi</mat-checkbox>
+        <mat-checkbox name="english" [(ngModel)]="vendor.languagePreference.english" [ngModelOptions]="{standalone: true}">English</mat-checkbox>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">District</label>
+          <mat-select name="district" #district="ngModel" [(ngModel)]="vendor.district" required (selectionChange)="onDistrictChange()">
+            <mat-option *ngFor="let district of districts; let i = index" [value]="i+1">
+              {{ district }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="district.invalid && (district.dirty || district.touched)">
+            <span *ngIf="district.errors?.['required']">Kindly select a District.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100">
+          <label class="w-100">Block</label>
+          <mat-select name="block" #block="ngModel" [(ngModel)]="vendor.block" required>
+            <mat-option *ngFor="let block of blocks" [value]="block">
+              {{ block }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="block.invalid && (block.dirty || block.touched)">
+            <span *ngIf="block.errors?.['required']">Kindly select a Block.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="w-100">Gender</label>
+        <mat-radio-group class="d-block" name="gender" #gender="ngModel" [(ngModel)]="vendor.gender" required>
+          <mat-radio-button class="me-3" value="M">Male</mat-radio-button>
+          <mat-radio-button value="F">Female</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+          <span *ngIf="gender.errors?.['required']">Kindly select Gender.</span>
+        </mat-error>
+      </div>
+      <div class="col-md-4">
+        <label class="w-100">Upload Profile Image</label>
+        <input type="file" class="form-control" name="file" required (change)="onFileChange($event)">
+        <mat-error *ngIf="!fileValid">
+          <span>Kindly upload a Profile Image.</span>
+        </mat-error>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-12 text-end">
+        <button type="button" mat-raised-button color="primary" [disabled]="!basicForm.valid" (click)="continue()">
+          Continue
+        </button>
+      </div>
+    </div>
+  </form>
+  

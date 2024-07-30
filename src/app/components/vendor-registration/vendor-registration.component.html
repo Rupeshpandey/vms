@@ -1,1 +1,34 @@
-<p>vendor-registration works!</p>
+<div class="vendor-registration-container">
+    <div class="header-container">
+      <div class="heading">
+        <h1>Vendor Registration Form</h1>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button color="primary" (click)="vendorlist()">
+          Vendor List
+        </button>
+      </div>
+    </div>
+    
+  
+    <div class="content mt-4">
+      <mat-tab-group #tabGroup (selectedTabChange)="onTabChange($event)" backgroundColor="primary">
+        <mat-tab label="Basic Details Form">
+          <app-basic-details (formValid)="onFormValid('vendor', $event)"></app-basic-details>
+        </mat-tab>
+        <mat-tab label="Company Contact">
+          <app-company-contacts (formValid)="onFormValid('companyContact', $event)"></app-company-contacts>
+        </mat-tab>
+        <mat-tab label="Banking Information">
+          <app-banking-information (formValid)="onFormValid('bankingInformation', $event)"></app-banking-information>
+        </mat-tab>
+      </mat-tab-group>
+  
+      <div class="text-center mt-4">
+        <button mat-raised-button color="primary" (click)="submitForm()"
+          [disabled]="!isTabValid['vendor'] || !isTabValid['companyContact']">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
