@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { VendorService } from 'src/app/services/vendor.service';
 import { VendorCompositeModel } from 'src/app/models/vendor-composite.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs'; // Import Subscription if you have observables
 
 type VendorCompositeModelKey = keyof VendorCompositeModel;
 
@@ -13,7 +14,7 @@ type VendorCompositeModelKey = keyof VendorCompositeModel;
   templateUrl: './vendor-registration.component.html',
   styleUrls: ['./vendor-registration.component.css']
 })
-export class VendorRegistrationComponent implements OnInit {
+export class VendorRegistrationComponent implements OnInit, OnDestroy {
 
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
   @ViewChild('basicForm') basicForm!: NgForm;
@@ -26,12 +27,31 @@ export class VendorRegistrationComponent implements OnInit {
     bankingInformation: false
   };
   
-
   formData: VendorCompositeModel = this.initializeFormData();
+
+  private subscriptions: Subscription[] = []; // For managing subscriptions
 
   constructor(private vendorService: VendorService, private router: Router) {}
 
-  ngOnInit(): void { }
+  ngAfterViewInit() {
+    console.log('Basic form:', this.basicForm);
+    console.log('Company form:', this.companyForm);
+    console.log('Banking form:', this.bankingForm);
+
+    // Ensure forms are initialized before calling resetAllForms()
+    setTimeout(() => {
+      this.resetAllForms();
+    }, 0);
+  }
+
+  ngOnInit(): void { 
+    // Initialization logic here
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup logic here
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 
   onFormValid(tab: VendorCompositeModelKey, event: { valid: boolean; data: any }) {
     this.isTabValid[tab] = event.valid;
@@ -88,14 +108,9 @@ export class VendorRegistrationComponent implements OnInit {
         bankingInformation: false
     };
     this.navigateToTab(0);
-}
-ngAfterViewInit() {
-  console.log('Basic form:', this.basicForm);
-  console.log('Company form:', this.companyForm);
-  console.log('Banking form:', this.bankingForm);
   }
 
-resetAllForms() {
+  resetAllForms() {
     debugger;
     console.log('Resetting forms...');
     console.log('Basic form:', this.basicForm);
@@ -106,19 +121,31 @@ resetAllForms() {
         this.basicForm.resetForm();
         console.log('Basic form after reset:', this.basicForm);
     }
+    else 
+    {
+      console.warn('Basic form is undefined');
+    }
     if (this.companyForm) {
         console.log('Company form before reset:', this.companyForm);
         this.companyForm.resetForm();
         console.log('Company form after reset:', this.companyForm);
+    }
+    else 
+    {
+      console.warn('Company form is undefined');
     }
     if (this.bankingForm) {
         console.log('Banking form before reset:', this.bankingForm);
         this.bankingForm.resetForm();
         console.log('Banking form after reset:', this.bankingForm);
     }
+    else 
+    {
+      console.warn('Banking form is undefined');
+    }
     
     this.resetFormData();
-}
+  }
 
   initializeFormData(): VendorCompositeModel {
     return {
@@ -189,6 +216,4 @@ resetAllForms() {
   vendorlist() {
     this.router.navigate(['/vendor-list']);
   }
-
-  
 }
