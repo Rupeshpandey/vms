@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs'; // Import Subscription if you have observables
+import { BasicDetailsComponent } from '../basic-details/basic-details.component';
+import { CompanyContactsComponent } from '../company-contacts/company-contacts.component';
+import { BankingInformationComponent } from '../banking-information/banking-information.component';
 
 type VendorCompositeModelKey = keyof VendorCompositeModel;
 
@@ -17,9 +20,9 @@ type VendorCompositeModelKey = keyof VendorCompositeModel;
 export class VendorRegistrationComponent implements OnInit, OnDestroy {
 
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
-  @ViewChild('basicForm') basicForm!: NgForm;
-  @ViewChild('companyForm') companyForm!: NgForm;
-  @ViewChild('bankingForm') bankingForm!: NgForm;
+  @ViewChild(BasicDetailsComponent) basicForm!: BasicDetailsComponent;
+  @ViewChild(CompanyContactsComponent) companyForm!: CompanyContactsComponent;
+  @ViewChild(BankingInformationComponent) bankingForm!: BankingInformationComponent;
 
   isTabValid: { [key in VendorCompositeModelKey]: boolean } = {
     vendor: false,
@@ -113,9 +116,10 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   resetAllForms() {
     debugger;
     console.log('Resetting forms...');
-    console.log('Basic form:', this.basicForm);
+    // console.log('Basic form:', this.basicForm.resetForm());
     console.log('Company form:', this.companyForm);
     console.log('Banking form:', this.bankingForm);
+    this.basicForm.resetForm()
     if (this.basicForm) {
         console.log('Basic form before reset:', this.basicForm);
         this.basicForm.resetForm();
