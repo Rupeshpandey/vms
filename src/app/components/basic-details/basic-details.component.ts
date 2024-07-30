@@ -142,6 +142,17 @@ export class BasicDetailsComponent {
     this.formValid.emit({ valid: false, data: this.vendor });
   }
 
+  onMobileNumberInput(event: any): void {
+    const input = event.target;
+    const value = input.value;
+    
+    // Remove non-numeric characters
+    input.value = value.replace(/[^0-9]/g, '');
+
+    // Update the model value
+    this.vendor.mobile = input.value;
+  }
+
   // resetForm() {
   //   this.basicForm.resetForm();
   //   this.formValid.emit({ valid: false, data: this.vendor });

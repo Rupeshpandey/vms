@@ -3,34 +3,47 @@
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>First Name</mat-label>
-        <input matInput name="firstName" [(ngModel)]="vendor.firstName" #firstName="ngModel" required>
+        <input matInput name="firstName" [(ngModel)]="vendor.firstName" #firstName="ngModel"
+               required pattern="[a-zA-Z ]*" >
         <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
           <span *ngIf="firstName.errors?.['required']">Kindly fill First Name.</span>
+          <span *ngIf="firstName.errors?.['pattern']">Only alphabets are allowed.</span>
         </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>Middle Name</mat-label>
-        <input matInput name="middleName" [(ngModel)]="vendor.middleName">
+        <input matInput name="middleName" [(ngModel)]="vendor.middleName" #middleName="ngModel"
+               pattern="[a-zA-Z ]*">
+               <mat-error *ngIf="middleName.invalid && (middleName.dirty || middleName.touched)">
+                <span *ngIf="middleName.errors?.['required']">Kindly fill Last Name.</span>
+                <span *ngIf="middleName.errors?.['pattern']">Only alphabets are allowed.</span>
+              </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>Last Name</mat-label>
-        <input matInput name="lastName" [(ngModel)]="vendor.lastName" #lastName="ngModel" required>
+        <input matInput name="lastName" [(ngModel)]="vendor.lastName" #lastName="ngModel"
+               required pattern="[a-zA-Z ]*">
         <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
           <span *ngIf="lastName.errors?.['required']">Kindly fill Last Name.</span>
+          <span *ngIf="lastName.errors?.['pattern']">Only alphabets are allowed.</span>
         </mat-error>
       </mat-form-field>
     </div>
+    
   </div>
 
   <div class="row mb-3">
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>Mobile Number</mat-label>
-        <input matInput name="mobileNumber" #mobileNumber="ngModel" [(ngModel)]="vendor.mobile" required pattern="^[0-9]{10}$">
+        <input matInput name="mobileNumber" #mobileNumber="ngModel" [(ngModel)]="vendor.mobile"
+               (input)="onMobileNumberInput($event)" required pattern="^[0-9]{10}$">
         <mat-error *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">
           <span *ngIf="mobileNumber.errors?.['required']">Kindly fill Mobile Number.</span>
           <span *ngIf="mobileNumber.errors?.['pattern']">Mobile Number should be 10 digits.</span>
@@ -40,7 +53,13 @@
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" name="dob" #dob="ngModel" [(ngModel)]="vendor.dob" required>
+        <input matInput 
+               [matDatepicker]="picker" 
+               name="dob" 
+               #dob="ngModel" 
+               [(ngModel)]="vendor.dob" 
+               (focus)="picker.open()" 
+               required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="dob.invalid && (dob.dirty || dob.touched)">
@@ -48,6 +67,7 @@
         </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-md-4">
       <mat-form-field class="w-100">
         <mat-label>Pan Card</mat-label>
