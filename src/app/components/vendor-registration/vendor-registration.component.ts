@@ -5,7 +5,7 @@ import { VendorCompositeModel } from 'src/app/models/vendor-composite.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs'; // Import Subscription if you have observables
+import { Subscription } from 'rxjs'; 
 import { BasicDetailsComponent } from '../basic-details/basic-details.component';
 import { CompanyContactsComponent } from '../company-contacts/company-contacts.component';
 import { BankingInformationComponent } from '../banking-information/banking-information.component';

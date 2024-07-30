@@ -1,5 +1,8 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { VendorService } from 'src/app/services/vendor.service';
+import { VendorCompositeModel } from 'src/app/models/vendor-composite.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vendor-list',
@@ -8,13 +11,51 @@ import { Router } from '@angular/router';
 })
 export class VendorListComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  vendors: VendorCompositeModel[] = [];
+
+  constructor(private vendorService: VendorService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loadVendors();
   }
 
-  vendorlist(){
+  loadVendors(): void {
+    this.vendorService.getVendors().subscribe(
+      data => this.vendors = data,
+      error => console.error('Error loading vendors', error)
+    );
+  }
+
+  navigateToRegistration(): void {
     this.router.navigate(['/vendor-registration']);
   }
 
+  editVendor(id: number): void {
+    if (typeof id === 'number') {
+      this.router.navigate(['/vendor-registration'], { state: { vendorId: id } });
+    }
+  }
+
+  deleteVendor(id: number): void {
+    if (typeof id === 'number') {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action cannot be undone!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.vendorService.deleteVendor(id).subscribe(
+            () => {
+              Swal.fire('Deleted!', 'The vendor has been deleted.', 'success');
+              this.loadVendors(); // Refresh the vendor list
+            },
+            error => Swal.fire('Error!', 'There was an error deleting the vendor.', 'error')
+          );
+        }
+      });
+    }
+  }
 }

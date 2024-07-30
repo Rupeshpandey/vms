@@ -1,12 +1,41 @@
-<div class="vendor-registration-container">
-    <div class="header-container">
-      <div class="heading">
-        <h1>Vendor List</h1>
-      </div>
-      <div class="button-container">
-        <button mat-raised-button color="primary" (click)="vendorlist()">
-          Vendor Registration
-        </button>
-      </div>
+<div class="vendor-list-container">
+  <div class="header-container">
+    <div class="heading">
+      <h1>Vendor List</h1>
     </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="navigateToRegistration()">
+        Vendor Registration
+      </button>
+    </div>
+  </div>
+
+  <div class="content mt-4">
+    <h2>Vendor List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of vendors">
+          <td>{{ vendor.vendor.vendorID }}</td>
+          <td>{{ vendor.vendor.firstName }} {{ vendor.vendor.lastName }}</td>
+          <td>{{ vendor.companyContact.email }}</td>
+          <td>
+            <button mat-raised-button color="primary">
+              Edit
+            </button>
+            <button mat-raised-button color="warn">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
