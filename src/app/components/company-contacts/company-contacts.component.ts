@@ -39,9 +39,7 @@ export class CompanyContactsComponent {
     this.formValid.emit({ valid: false, data: this.companyContact }); 
   }
 
-  onFormChange() {
-    this.checkFormValidity();
-  }
+
 
   checkFormValidity() {
     this.formValid.emit({ valid: this.companyForm.valid ?? false, data: this.companyContact });

@@ -1,9 +1,9 @@
-<form #companyForm="ngForm" class="container mt-3" (ngModelChange)="onFormChange()">
+<form #companyForm="ngForm" class="container mt-3" novalidate>
     <div class="row mb-3">
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Company Name</mat-label>
-          <input matInput name="companyName" [(ngModel)]="companyContact.companyName" required>
+          <input matInput name="companyName" #companyName="ngModel" [(ngModel)]="companyContact.companyName" required>
           <mat-error *ngIf="companyForm.controls['companyName']?.invalid && (companyForm.controls['companyName']?.dirty || companyForm.controls['companyName']?.touched)">
             Company Name is required.
           </mat-error>
@@ -12,7 +12,7 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Telephone</mat-label>
-          <input matInput name="telephone" [(ngModel)]="companyContact.telephone" required>
+          <input matInput name="telephone" #telephone="ngModel" [(ngModel)]="companyContact.telephone" required>
           <mat-error *ngIf="companyForm.controls['telephone']?.invalid && (companyForm.controls['telephone']?.dirty || companyForm.controls['telephone']?.touched)">
             Telephone is required.
           </mat-error>
@@ -21,7 +21,7 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Email</mat-label>
-          <input matInput name="email" [(ngModel)]="companyContact.email" required email>
+          <input matInput name="email" #email="ngModel" [(ngModel)]="companyContact.email" required email>
           <mat-error *ngIf="companyForm.controls['email']?.invalid && (companyForm.controls['email']?.dirty || companyForm.controls['email']?.touched)">
             <span *ngIf="companyForm.controls['email']?.errors?.['required']">Email is required.</span>
             <span *ngIf="companyForm.controls['email']?.errors?.['email']">Please enter a valid email.</span>
@@ -34,13 +34,13 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Fax</mat-label>
-          <input matInput name="fax" [(ngModel)]="companyContact.fax">
+          <input matInput name="fax" #fax="ngModel" [(ngModel)]="companyContact.fax">
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Website</mat-label>
-          <input matInput name="website" [(ngModel)]="companyContact.website" required>
+          <input matInput name="website" #website="ngModel" [(ngModel)]="companyContact.website" required>
           <mat-error *ngIf="companyForm.controls['website']?.invalid && (companyForm.controls['website']?.dirty || companyForm.controls['website']?.touched)">
             Website is required.
           </mat-error>
@@ -49,7 +49,7 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Point of Contact Name</mat-label>
-          <input matInput name="pointOfContactName" [(ngModel)]="companyContact.pointOfContactName">
+          <input matInput name="pointOfContactName" #pointOfContactName="ngModel" [(ngModel)]="companyContact.pointOfContactName">
         </mat-form-field>
       </div>
     </div>
@@ -58,13 +58,13 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Point of Contact Title</mat-label>
-          <input matInput name="pointOfContactTitle" [(ngModel)]="companyContact.title">
+          <input matInput name="pointOfContactTitle" #pointOfContactTitle="ngModel" [(ngModel)]="companyContact.title">
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Contact Phone 1</mat-label>
-          <input matInput name="contactPhone1" [(ngModel)]="companyContact.contactPhone1" required>
+          <input matInput name="contactPhone1" #contactPhone1="ngModel" [(ngModel)]="companyContact.contactPhone1" required>
           <mat-error *ngIf="companyForm.controls['contactPhone1']?.invalid && (companyForm.controls['contactPhone1']?.dirty || companyForm.controls['contactPhone1']?.touched)">
             Contact Phone 1 is required.
           </mat-error>
@@ -73,7 +73,7 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Contact Email</mat-label>
-          <input matInput name="contactEmail" [(ngModel)]="companyContact.contactEmail" required email>
+          <input matInput name="contactEmail" #contactEmail="ngModel" [(ngModel)]="companyContact.contactEmail" required email>
           <mat-error *ngIf="companyForm.controls['contactEmail']?.invalid && (companyForm.controls['contactEmail']?.dirty || companyForm.controls['contactEmail']?.touched)">
             <span *ngIf="companyForm.controls['contactEmail']?.errors?.['required']">Contact Email is required.</span>
             <span *ngIf="companyForm.controls['contactEmail']?.errors?.['email']">Please enter a valid email.</span>
@@ -86,13 +86,13 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Contact Phone 2</mat-label>
-          <input matInput name="contactPhone2" [(ngModel)]="companyContact.contactPhone2">
+          <input matInput name="contactPhone2" #contactPhone2="ngModel" [(ngModel)]="companyContact.contactPhone2">
         </mat-form-field>
       </div>
       <div class="col-8">
         <mat-form-field class="w-100">
           <mat-label>Address</mat-label>
-          <input matInput name="address" [(ngModel)]="companyContact.mailingAddress" required>
+          <input matInput name="address" #address="ngModel" [(ngModel)]="companyContact.mailingAddress" required>
           <mat-error *ngIf="companyForm.controls['address']?.invalid && (companyForm.controls['address']?.dirty || companyForm.controls['address']?.touched)">
             Address is required.
           </mat-error>
