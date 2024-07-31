@@ -55,12 +55,12 @@ export class BasicDetailsComponent {
   loadDistricts() {
     this.districtsService.getDistricts().subscribe(
       (data: any[]) => {
-        this.districts = data.map(district => district.district_Name); // Map to district_Name from API response
+        this.districts = data.map(district => district.district_Name); 
         console.log('Districts:', this.districts);  
       },
       (error) => {
         console.error('Error loading districts', error);
-        // Handle error (e.g., show error message to user)
+        
       }
     );
   }
@@ -112,11 +112,6 @@ export class BasicDetailsComponent {
     this.formValid.emit({ valid: isValid?? false, data: this.vendor });
   }
   
-
-  onFormChange() {
-    this.checkFormValidity();
-  }
-
   continue() {
     this.checkFormValidity();
     if (this.fileValid && this.basicForm.valid) {
@@ -155,16 +150,13 @@ export class BasicDetailsComponent {
     const input = event.target;
     const value = input.value;
     
-    // Remove non-numeric characters
+    
     input.value = value.replace(/[^0-9]/g, '');
 
-    // Update the model value
+    
     this.vendor.mobile = input.value;
   }
 
-  // resetForm() {
-  //   this.basicForm.resetForm();
-  //   this.formValid.emit({ valid: false, data: this.vendor });
-  //   }
+  
   
 }
