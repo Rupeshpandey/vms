@@ -21,9 +21,12 @@ export class VendorListComponent implements OnInit {
 
   loadVendors(): void {
     this.vendorService.getVendors().subscribe(
-      data => this.vendors = data,
+      data => { this.vendors = data;
+        console.log(this.vendors);
+      },
       error => console.error('Error loading vendors', error)
     );
+    
   }
 
   navigateToRegistration(): void {

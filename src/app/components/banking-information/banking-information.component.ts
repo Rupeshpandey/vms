@@ -33,20 +33,7 @@ export class BankingInformationComponent {
     this.formValid.emit({ valid: this.bankingForm?.valid ?? false, data: this.bankingInformation });
   }
 
-  onFormChange(isValid: boolean) {
-    this.checkFormValidity();
-  }
-  
-
-  
-
-  continue() {
-    this.checkFormValidity();
-    if (this.bankingForm.valid) {
-      this.formValid.emit({ valid: true, data: this.bankingInformation });
-    }
-  }
-  resetForm() {
+ resetForm() {
     debugger;
     this.bankingInformation = {
       vendorID: 0,
@@ -60,11 +47,5 @@ export class BankingInformationComponent {
     this.bankingForm.resetForm(this.bankingInformation);
     this.formValid.emit({ valid: false, data: this.bankingInformation });
   }
-
-  // resetForm() {
-  //     this.bankingForm.resetForm();
-  //     this.formValid.emit({ valid: false, data: this.bankingInformation });
-    
-  // }
 
 }
