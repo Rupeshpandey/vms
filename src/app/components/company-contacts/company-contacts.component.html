@@ -12,9 +12,11 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Telephone</mat-label>
-          <input matInput name="telephone" #telephone="ngModel" [(ngModel)]="companyContact.telephone" required>
+          <input matInput name="telephone" #telephone="ngModel" [(ngModel)]="companyContact.telephone"
+          (input)="onMobileNumberInput($event)" required pattern="^[0-9]{10}$">
           <mat-error *ngIf="companyForm.controls['telephone']?.invalid && (companyForm.controls['telephone']?.dirty || companyForm.controls['telephone']?.touched)">
-            Telephone is required.
+            <span *ngIf="telephone.errors?.['required']">Kindly fill Mobile Number.</span>
+            <span *ngIf="telephone.errors?.['pattern']">Mobile Number should be 10 digits.</span>
           </mat-error>
         </mat-form-field>
       </div>
@@ -34,7 +36,8 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Fax</mat-label>
-          <input matInput name="fax" #fax="ngModel" [(ngModel)]="companyContact.fax">
+          <input matInput name="fax" #fax="ngModel" [(ngModel)]="companyContact.fax"
+          (input)="onMobileNumberInput($event)" required pattern="^[0-9]{10}$">
         </mat-form-field>
       </div>
       <div class="col-md-4">
@@ -64,7 +67,8 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Contact Phone 1</mat-label>
-          <input matInput name="contactPhone1" #contactPhone1="ngModel" [(ngModel)]="companyContact.contactPhone1" required>
+          <input matInput name="contactPhone1" #contactPhone1="ngModel" [(ngModel)]="companyContact.contactPhone1" 
+          (input)="onMobileNumberInput($event)" required pattern="^[0-9]{10}$">
           <mat-error *ngIf="companyForm.controls['contactPhone1']?.invalid && (companyForm.controls['contactPhone1']?.dirty || companyForm.controls['contactPhone1']?.touched)">
             Contact Phone 1 is required.
           </mat-error>
@@ -86,7 +90,8 @@
       <div class="col-md-4">
         <mat-form-field class="w-100">
           <mat-label>Contact Phone 2</mat-label>
-          <input matInput name="contactPhone2" #contactPhone2="ngModel" [(ngModel)]="companyContact.contactPhone2">
+          <input matInput name="contactPhone2" #contactPhone2="ngModel" [(ngModel)]="companyContact.contactPhone2"
+          (input)="onMobileNumberInput($event)" required pattern="^[0-9]{10}$">
         </mat-form-field>
       </div>
       <div class="col-8">

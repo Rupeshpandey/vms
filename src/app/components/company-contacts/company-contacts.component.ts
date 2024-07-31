@@ -89,4 +89,10 @@ export class CompanyContactsComponent {
     console.log('Tab changed to', event.index);
   }
 
+  onMobileNumberInput(event: any): void {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
+
 }
