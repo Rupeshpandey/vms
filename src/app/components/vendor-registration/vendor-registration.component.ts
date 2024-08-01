@@ -4,7 +4,6 @@ import { VendorService } from 'src/app/services/vendor.service';
 import { VendorCompositeModel } from 'src/app/models/vendor-composite.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs'; 
 import { BasicDetailsComponent } from '../basic-details/basic-details.component';
 import { CompanyContactsComponent } from '../company-contacts/company-contacts.component';
@@ -32,7 +31,7 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   
   formData: VendorCompositeModel = this.initializeFormData();
 
-  private subscriptions: Subscription[] = []; // For managing subscriptions
+  private subscriptions: Subscription[] = [];
 
   constructor(private vendorService: VendorService, private router: Router) {}
 
