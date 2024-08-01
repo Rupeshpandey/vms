@@ -36,11 +36,6 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   constructor(private vendorService: VendorService, private router: Router) {}
 
   ngAfterViewInit() {
-    console.log('Basic form:', this.basicForm);
-    console.log('Company form:', this.companyForm);
-    console.log('Banking form:', this.bankingForm);
-
-    // Ensure forms are initialized before calling resetAllForms()
     setTimeout(() => {
       this.resetAllForms();
     }, 0);
@@ -51,7 +46,6 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Cleanup logic here
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
@@ -101,9 +95,7 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   }
 
   resetFormData() {
-    console.log('Before reset: ', this.formData);
     this.formData = this.initializeFormData(); // Reset data model
-    console.log('After reset: ', this.formData);
     this.isTabValid = {
         vendor: false,
         companyContact: false,
@@ -113,40 +105,15 @@ export class VendorRegistrationComponent implements OnInit, OnDestroy {
   }
 
   resetAllForms() {
-    debugger;
-    console.log('Resetting forms...');
-    // console.log('Basic form:', this.basicForm.resetForm());
-    console.log('Company form:', this.companyForm);
-    console.log('Banking form:', this.bankingForm);
-    this.basicForm.resetForm()
     if (this.basicForm) {
-        console.log('Basic form before reset:', this.basicForm);
-        this.basicForm.resetForm();
-        console.log('Basic form after reset:', this.basicForm);
-    }
-    else 
-    {
-      console.warn('Basic form is undefined');
+      this.basicForm.resetForm();
     }
     if (this.companyForm) {
-        console.log('Company form before reset:', this.companyForm);
-        this.companyForm.resetForm();
-        console.log('Company form after reset:', this.companyForm);
-    }
-    else 
-    {
-      console.warn('Company form is undefined');
+      this.companyForm.resetForm();
     }
     if (this.bankingForm) {
-        console.log('Banking form before reset:', this.bankingForm);
-        this.bankingForm.resetForm();
-        console.log('Banking form after reset:', this.bankingForm);
+      this.bankingForm.resetForm();
     }
-    else 
-    {
-      console.warn('Banking form is undefined');
-    }
-    
     this.resetFormData();
   }
 
